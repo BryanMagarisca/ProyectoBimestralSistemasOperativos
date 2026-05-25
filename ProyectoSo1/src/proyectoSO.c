@@ -176,14 +176,18 @@ void ejecutar_modo_paralelo(int num_hilos) {
     double tiempo_total = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
     printf("TIEMPO TOTAL PARALELO (%d hilos): %.5fs\n", num_hilos, tiempo_total);
 }
-
+// Restaura con una copia de seguridad el dataset para volver a ser utilizado
 void restaurar_dataset() {
 
     for(int i = 0; i < total_lineas; i++) {
         dataset[i] = dataset_original[i];
     }
 }
-
+// Reinicia contadores para cuando vuelva a ejecutarse 
+void reiniciar_contadores() {
+    total_nulos_limpiados = 0;
+    total_categorias_imputadas = 0;
+}
 //Hilo Principal (Main): Lectura de datos y control
 int main(int argc, char *argv[]) {
     
@@ -257,8 +261,8 @@ int main(int argc, char *argv[]) {
 
     // Impresion de los resultados globales obtenidos
     printf("\n*** RESULTADOS DEL PROCESAMIENTO ***\n");
-    printf("Total de nulos limpiados: %d\n", total_nulos_limpiados/3);
-    printf("Total de categorias imputadas (vacios reemplazados): %d\n", total_categorias_imputadas/3);
+    printf("Total de nulos limpiados: %d\n", total_nulos_limpiados);
+    printf("Total de categorias imputadas (vacios reemplazados): %d\n", total_categorias_imputadas);
 
     //Impresión de los datos modificados
     printf("\n--- DATOS PROCESADOS ---\n");
