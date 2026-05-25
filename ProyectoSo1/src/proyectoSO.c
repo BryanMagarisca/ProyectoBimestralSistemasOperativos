@@ -39,7 +39,6 @@ int total_categorias_imputadas = 0;
 // Constantes que nos sirven para calcular la normalizacion y la moda
 const double VALOR_MIN = 0.0;
 const double VALOR_MAX = 100.0;
-const char MODA_CATEGORIA[] = "MODA_EJEMPLO";
 
 // Función que simula el procesamiento de una fila
 void procesar_fila(Transaccion *t) {
@@ -56,7 +55,7 @@ void procesar_fila(Transaccion *t) {
 
     // Imputamos con la moda si vemos que el string de la categoria esta vacio
     if (t->categoria[0] == '\0') {
-        strcpy(t->categoria, MODA_CATEGORIA); 
+        strcpy(t->categoria, moda_global); 
         
         // Bloqueamos otra vez para actualizar este contador global
         pthread_mutex_lock(&mutex_resultados);
@@ -241,6 +240,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("Archivo cargado con éxito. Total filas: %d\n", total_lineas);
+    calcular_moda();
     printf("\n--- DATOS ORIGINALES ---\n");
     for (int i = 0; i <20; i++){
         printf("ID:%d | Valor: %.2f | Categoria: %s\n",
@@ -273,6 +273,5 @@ int main(int argc, char *argv[]) {
            dataset[i].valor_original,
            dataset[i].categoria);
     }
-    calcular_moda();
     return 0;
 }
