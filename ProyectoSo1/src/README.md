@@ -87,3 +87,124 @@ El programa utiliza la función clock_gettime() para medir con precisión los ti
 2. Verificar la ruta del archivo CSV
 3. Compilar el programa
 4. Ejecutar el programa
+
+## Ejecución del programa
+
+En la ejecución del programa se muestran los siguientes resultados:
+
+![Datos originales](datos%20originales.jpeg)
+
+---
+
+![Gráfico de tiempos](Tiempos%20de%20ejecución.jpeg)
+
+---
+
+![Datos procesados](datos%20procesados.jpeg)
+
+## Tabla Comparativa de Rendimiento
+
+| Modo de ejecución | Número de hilos | Tiempo de ejecución (s) | Speedup | Eficiencia |
+|-------------------|----------------|--------------------------|----------|-------------|
+| Secuencial        | 1              | 0.00011                  | 1.00     | 100 %       |
+| Paralelo          | 3              | 0.00277                  | 0.04     | 1.3 %       |
+| Paralelo          | 4              | 0.00054                  | 0.20     | 5 %         |
+
+---
+
+## Cálculo del Speedup
+
+El speedup permite medir la mejora del rendimiento del procesamiento paralelo respecto al procesamiento secuencial.
+
+$$
+\
+Speedup = \frac{T_{secuencial}}{T_{paralelo}}
+\
+$$
+
+Donde:
+
+- $\(T_{secuencial}\)$ = tiempo del modo secuencial
+- $\(T_{paralelo}\)$ = tiempo del modo paralelo
+
+---
+
+### Speedup para 3 hilos
+
+$$
+\
+Speedup = \frac{0.00011}{0.00277} \approx 0.04
+\
+$$
+
+---
+
+### Speedup para 4 hilos
+
+$$
+\
+Speedup = \frac{0.00011}{0.00054} \approx 0.20
+\
+$$
+
+## Cálculo de la Eficiencia
+
+La eficiencia mide el aprovechamiento de los hilos utilizados.
+
+### Fórmula
+
+$$
+Eficiencia = \frac{Speedup}{Número\ de\ hilos}
+$$
+
+---
+
+### Eficiencia para 3 hilos
+
+$$
+Eficiencia = \frac{0.04}{3} \approx 0.013
+$$
+
+$$
+Eficiencia \approx 1.3\text{ por ciento}
+$$
+
+---
+
+### Eficiencia para 4 hilos
+
+$$
+Eficiencia = \frac{0.20}{4} \approx 0.05
+$$
+
+$$
+Eficiencia \approx 5\text{ por ciento}
+$$
+
+---
+
+El procesamiento secuencial presentó un mejor rendimiento debido a que el conjunto de datos utilizado era relativamente pequeño. En estas condiciones, el tiempo requerido para crear, administrar y sincronizar múltiples hilos supera el beneficio obtenido mediante paralelismo.
+
+Además, operaciones como la creación de threads, división de bloques de trabajo y uso de mecanismos de sincronización introducen un overhead adicional que afecta el tiempo total de ejecución.
+
+Por esta razón, el modo secuencial resultó más eficiente para este escenario específico. Sin embargo, en aplicaciones con datasets significativamente más grandes, el procesamiento paralelo suele ofrecer mejoras importantes de rendimiento.
+
+## Conclusiones
+
+- Se desarrolló correctamente un programa en lenguaje C capaz de procesar transacciones desde archivos CSV utilizando tanto procesamiento secuencial como procesamiento paralelo mediante pthreads.
+- Los resultados de la ejecución mostraron que, para el tamaño actual del dataset utilizado, el procesamiento secuencial obtuvo un mejor rendimiento que las versiones paralelas de 3 y 4 hilos. Esto se debe al overhead generado por la creación, administración y sincronización de threads.
+- El análisis de speedup y eficiencia permitió evidenciar que el paralelismo no siempre garantiza mejoras de rendimiento, especialmente cuando la carga de trabajo es pequeña y el costo de coordinación entre hilos supera el beneficio del procesamiento concurrente.
+- El proyecto permitió reforzar los temas correspondientes de creación y manejo de hilos además de la importancia de estos en entornos multitarea.
+
+## Bibliografía
+
+- [1] Actian Corporation, "¿Qué es la normalización de datos?," Actian, 12 de septiembre de 2023. [En línea]. Disponible en: https://www.actian.com/es/blog/data-intelligence/what-is-data-normalization/ [Accedido: 25-may-2026].
+
+- [2] SearchDataCenter, "What is Parallel Processing?," TechTarget. [En línea]. Disponible en: https://www.techtarget.com/searchdatacenter/definition/parallel-processing [Accedido: 23-may-2026].
+
+- [3] GeeksforGeeks, "Introduction of Process Synchronization," GeeksforGeeks, 19 de junio de 2015. [En línea]. Disponible en: https://www.geeksforgeeks.org/operating-systems/introduction-of-process-synchronization/ [Accedido: 23-may-2026].
+
+- [4] G. Amagua, "RPubs - Imputacion de Datos," RPubs.com, 06 de julio de 2021. [En línea]. Disponible en: https://rpubs.com/Gabriel-Amagua/788490 [Accedido: 24-may-2026].
+
+- [5] M. Rossainz López, "Programación Concurrente y Paralela 4.1. El Factor de rendimiento SpeedUp," Facultad de Ciencias de la Computación, BUAP. [En línea]. Disponible en: https://www.cs.buap.mx/~rossainz/PCyP_Maestria/1_Apuntes/6_ProgParalela1.pdf [Accedido: 25-may-2026].
+
