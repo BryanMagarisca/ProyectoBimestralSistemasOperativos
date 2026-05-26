@@ -242,7 +242,7 @@ int main(int argc, char *argv[]) {
     printf("Archivo cargado con éxito. Total filas: %d\n", total_lineas);
     calcular_moda();
     printf("\n--- DATOS ORIGINALES ---\n");
-    for (int i = 0; i <20; i++){
+    for (int i = 0; i <total_lineas; i++){
         printf("ID:%d | Valor: %.2f | Categoria: %s\n",
            dataset[i].id,
            dataset[i].valor_numerico,
@@ -266,7 +266,7 @@ int main(int argc, char *argv[]) {
 
     //Impresión de los datos modificados
     printf("\n--- DATOS PROCESADOS ---\n");
-    for (int i = 0; i <20; i++){
+    for (int i = 0; i <total_lineas; i++){
         printf("ID:%d | Valor Normalizado: %.2f | Valor: %.2f  | Categoria: %s\n",
            dataset[i].id,
            dataset[i].valor_numerico,
