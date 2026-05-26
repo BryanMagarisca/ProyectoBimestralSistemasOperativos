@@ -191,7 +191,7 @@ void reiniciar_contadores() {
 int main(int argc, char *argv[]) {
     
     FILE *archivo;
-    archivo = fopen("C:\\Users\\Samue\\OneDrive\\Desktop\\ProyectoSo1\\src\\transacciones.csv", "r");
+    archivo = fopen("transacciones.csv", "r");
 
     if (archivo == NULL) {
         perror("Error al abrir el archivo");
@@ -222,7 +222,7 @@ int main(int argc, char *argv[]) {
     dataset[total_lineas].valor_numerico = atof(token);
     dataset[total_lineas].valor_original = atof(token);
     // Categoría
-    token = strtok(NULL, ",\n");
+    token = strtok(NULL, ",\r\n");
 
     if (token != NULL && strlen(token) > 0) {
         strcpy(dataset[total_lineas].categoria, token);
