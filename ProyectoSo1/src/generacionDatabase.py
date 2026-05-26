@@ -8,7 +8,7 @@ with open("transacciones.csv", "w", newline="") as archivo:
 
     writer.writerow(["id", "valor_numerico", "categoria"])
 
-    for i in range(1, 5001):
+    for i in range(1, 10001):
 
         # Algunos valores negativos para simular nulos
         if random.random() < 0.1:
